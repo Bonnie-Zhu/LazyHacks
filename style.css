@@ -1,0 +1,184 @@
+.top{
+  display: flex;
+  flex-direction: column; /* Stack the image and the title vertically */
+  align-items: center; /* Center everything horizontally */
+  justify-content: center;
+  gap: 15px; /* Add some spacing between the image and the title */
+}
+
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+.header {
+  display: flex; /* Align elements in a row */
+  flex-direction: row; /* Ensures horizontal layout */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Align items vertically */
+  gap: 20px; /* Space between the title and image */
+  padding: 20px 10px; /* Add padding around the header for spacing */
+  margin-bottom: 20px; /* Space below the header to separate it from other containers */
+  background: rgba(255, 255, 255, 0.2); /* Optional: Light background for distinction */
+  border-radius: 10px; /* Optional: Slight rounding of header edges */
+  width: 100%; /* Take the full width of the wrapper */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for visual separation */
+}
+.header h2 {
+  font-size: 2rem;
+  margin: 0; /* Remove margin for tighter alignment */
+  color: #000000;
+  text-align: center;
+}
+
+.header img {
+  max-width: 230px; /* Limit image width */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Optional: Add rounded corners to the image */
+}
+body {
+  font-family: 'Times New Roman', Times, serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #adf1ff, #acc9fb);
+  color: #000000;
+  overflow-y: auto;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column; /* Stack containers vertically */
+  justify-content: flex-start;
+  align-items: center; /* Center the containers horizontally */
+  width: 90%;
+  max-width: 1200px;
+  gap: 20px; /* Space between containers */
+  margin-top: 20px;
+}
+
+.container1 {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%; /* Ensure containers take full width */
+  min-height: 400px; /* Sets a consistent height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Evenly distributes content */
+  gap: 20px;
+  padding-top: 40px; /* Adds padding to the top of the container */
+
+}
+.container2 {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%; /* Ensure containers take full width */
+  min-height: 400px; /* Sets a consistent height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Evenly distributes content */
+  gap: 20px;
+  padding-top: 40px; /* Adds padding to the top of the container */
+
+}
+
+.top {
+background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%; /* Ensure containers take full width */
+  min-height: 400px; /* Sets a consistent height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Evenly distributes content */
+  gap: 20px;
+  padding-top: 40px; /* Adds padding to the top of the container */
+
+}
+
+
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input, select {
+  background: rgba(255, 255, 255, 0.2);
+  color: #000000;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+input:focus, select:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+button {
+  background: #f9e95d;
+  color: #000;
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #f7d33a;
+}
+
+.output {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: #0b0909;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wrapper {
+      flex-direction: column;
+      align-items: center;
+  }
+
+.container {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 50%; /* Ensure containers take full width */
+  min-height: 400px; /* Set a consistent height */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Stack content within containers */
+  gap: 20px; /* Space between elements inside the container */
+  }
+
+}
+
+

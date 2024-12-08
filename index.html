@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Outfit Decider & To-do List</title>
+</head>
+<body>
+    <div class="top">
+    <h1>Lazy Manager</h1>
+     <p> <img src="image.png" width="230" height="200" </p>
+    </div>
+
+    
+    <div class="container1">
+        <h2>Outfit Decider</h2>
+        <p>Enter your city:</p>
+        <input type="text" id="cityInput" placeholder="Type your city here">
+        <p>Select your activity:</p>
+        <select id="activityInput">
+            <option value="walking">Walking</option>
+            <option value="working out">Working Out</option>
+            <option value="formal meeting">Formal Meeting</option>
+            <option value="casual outing">Casual Outing</option>
+        </select>
+        <button onclick="getWeather()">Get Recommendation</button>
+        <div class="output" id="output"></div>
+    </div>
+
+    <div class="container2">
+        <h1>To-do list</h1>
+        <section id="more-planner">
+            <h2>Add your task</h2>
+            <div id="task-form">
+                <input type="text" id="task-input" placeholder="Enter task...">
+                <input type="date" id="due-date">
+                <button onclick="addTask()">Add Task</button>
+            </div>
+            <ul id="task-list">
+                <!-- List of tasks will appear here -->
+            </ul>
+        </section>
+    </div>
+    </div>
+
+    <script>
+        // Outfit Decider Code
+        const apiKey = 'cc9ce7e31d583e4566da0244ff7d50a5'; // Replace with your OpenWeather API key
+
+        async function getWeather() {
+            const city = document.getElementById('cityInput').value;
+            const activity = document.getElementById('activityInput').value;
+            const outputDiv = document.getElementById('output');
+            let suggestion = "";
+
+            if (!city) {
+                outputDiv.textContent = "Please enter a city!";
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`);
+                const data = await response.json();
+
+                if (data.cod !== 200) {
+                    outputDiv.textContent = "City not found! Please check the spelling.";
+                    return;
+                }
+
+                const temperature = data.main.temp;
+                const weatherCondition = data.weather[0].main.toLowerCase();
+
+                if (activity === "walking") {
+                    if (temperature > 20 && weatherCondition === "clear") {
+                        suggestion = "Wear comfortable walking shoes, light clothes, and a hat.";
+                    } else if (weatherCondition === "rain") {
+                        suggestion = "Carry an umbrella and wear waterproof shoes.";
+                    } else if (temperature < 10) {
+                        suggestion = "Dress warmly and wear a scarf and gloves.";
+                    } else {
+                        suggestion = "Dress for comfort and carry a light jacket.";
+                    }
+                } else if (activity === "working out") {
+                    suggestion = temperature > 15 
+                        ? "Wear breathable workout clothes and bring a water bottle." 
+                        : "Wear warm layers for your workout and stay hydrated.";
+                } else if (activity === "formal meeting") {
+                    suggestion = temperature > 15 
+                        ? "Wear formal attire, but keep a blazer or jacket handy." 
+                        : "Dress formally with a warm coat or jacket.";
+                } else if (activity === "casual outing") {
+                    suggestion = temperature > 20 
+                        ? "Wear casual, light clothing and enjoy the weather!" 
+                        : "Wear casual clothes with layers for comfort.";
+                }
+
+                outputDiv.textContent = `Weather in ${city}: ${data.weather[0].description}, ${temperature}°C.\nRecommendation: ${suggestion}`;
+            } catch (error) {
+                outputDiv.textContent = "Error fetching weather data. Please try again later.";
+                console.error("Error:", error);
+            }
+        }
+
+        // MorePlanner Code
+        function addTask() {
+            const taskInput = document.getElementById('task-input');
+            const dueDateInput = document.getElementById('due-date');
+
+            const task = taskInput.value;
+            const dueDate = dueDateInput.value;
+
+            if (task && dueDate) {
+                const taskList = document.getElementById('task-list');
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    <span>${task} (Due: ${dueDate})</span>
+                    <button onclick="deleteTask(event)">Delete</button>
+                `;
+
+                taskList.appendChild(listItem);
+                taskInput.value = '';
+                dueDateInput.value = '';
+            } else {
+                alert('Please fill out both the task and due date!');
+            }
+        }
+
+        function deleteTask(event) {
+            const taskList = document.getElementById('task-list');
+            const taskItem = event.target.parentNode;
+            taskList.removeChild(taskItem);
+        }
+    </script>
+</body>
+</html>
